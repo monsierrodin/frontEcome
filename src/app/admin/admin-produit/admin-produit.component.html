@@ -1,0 +1,291 @@
+<div class="containaair-prod">
+
+<div   *ngIf="ismodalImage" class="modalImage">
+    <div class="modal_showDetail"  style="z-index: 200; ">
+      <label style="width: 100%;display: flex;flex-direction: row-reverse;font-size: 20px; cursor: pointer;color: rgb(223, 7, 7);" ><i (click)="ismodalImage=false" class="bi bi-x"></i></label>
+      <div>
+        <label class="labelCategorie" >Image de produit</label>
+      <hr>
+      </div>
+      <div [formGroup]="formImage"  class="newPhotos" >
+        <input class="form-control" type="file" formControlName="image" (change)="selectFile($event)">
+        <button class="form-control bg-primary"  (click)="enregisterImage()"> Enregistrer</button>
+      </div>
+      <div>
+        <hr>
+      </div>
+      <div  class="datails">
+        <div *ngFor="let imge of listImageProduct" class="imageDetals">
+            <div class="portFolio_box">
+              <img [src]="'http://localhost:3012/uploads/' + imge.id + '.' + imge.extension  " alt="" >
+              <div class="layerSup">
+                <i (click)="deleteImage(imge.id)"  title="Supprimer" class="bi bi-trash"></i>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div   *ngIf="ismodalDetalis" class="modalcreation">
+    <div class="modal_showDetail"  style="z-index: 200; ">
+      <label style="width: 100%;display: flex;flex-direction: row-reverse;font-size: 20px; cursor: pointer;color: rgb(223, 7, 7);" ><i (click)="ismodalDetalis=false" class="bi bi-x"></i></label>
+      <div>
+        <label class="labelCategorie" >Détails de produit</label>
+        <hr>
+      </div>
+      <div class="datails">
+        <label >Nom Produit : {{detailsNom}} </label>
+        <label >Categorie: {{detailsCat}} </label>
+        <label >Arrivage : {{detailsArrivage}}</label>
+        <label >Status: {{detailsStat}}</label>
+        <label >Prix Unitaire : {{detailsPrix}} Ar</label>
+        <label >Faux Prix  : {{detailsFauxPrix}} Ar</label>
+        <label >Date d'insertion : {{detailsDate}} </label>
+      </div>
+    </div>
+</div>
+<!--Modal de creation de description
+-->
+<div   *ngIf="ismodalDescription" class="modalImage">
+  <div class="modal_showDetail"  style="z-index: 200; ">
+    <label style="width: 100%;display: flex;flex-direction: row-reverse;font-size: 20px; cursor: pointer;color: rgb(223, 7, 7);" ><i (click)="ismodalDescription=false" class="bi bi-x"></i></label>
+    <div>
+      <label class="labelCategorie" >Description de produit</label>
+    <hr>
+    </div>
+    <div [formGroup]="formDesc"  class="newDesc" >
+      <textarea [(ngModel)]="inputContenu" formControlName="contenu" name="" class="form-control" ></textarea>
+      <button class="form-control bg-primary" *ngIf="button==1" (click)="handleAddDescription()"> Enregistrer</button>
+      <button class="form-control bg-success" *ngIf="button==2" (click)="modificationDesc()"> Modifier</button>
+    </div>
+    <div>
+      <hr>
+    </div>
+    <div  class="datailsDescri">
+      <div *ngFor="let descri of listDescription;let i=index" class="listDesc" >
+          <div class="descrip">
+            <div class="ligne">
+              Description {{i+1}} : {{descri.contenu}}
+            </div>
+            <div class="ligne">
+              <i class="bi bi-pen-fill"  (click)="OpenModalDesc(descri.id,descri.contenu)" style="cursor: pointer;color: rgb(46, 10, 207) ;font-size: 20px; margin-left: 5px;"></i>
+              <i class="bi bi-trash" (click)="deleteDescription(descri.id)"  style="cursor: pointer;color: rgb(252, 3, 3) ;font-size: 20px; margin-left: 5px;"></i>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal suppression -->
+<div   *ngIf="isModalSupp" class="modalcreation">
+  <div  class="modal_show" style="z-index: 200;background-color: rgb(248, 98, 98);">
+    <div>
+      <label class="labelCategorie" >Confirmation </label>
+    </div>
+    <div class="input">
+      <span>Voulez vous vraiment suprimer <h5>{{detailsNom}}?</h5></span>
+    </div>
+    <div class="butonn">
+      <div class="btn1">
+        <button  (click)="functioDeleteProduct()">Ok</button>
+      </div>
+      <div class="btn2">
+      <button (click)="isModalSupp=false">Annuler </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div  [formGroup]="formModification"   *ngIf="ismodalMod" class="modalcreation">
+
+  <div class="modal_show" style="z-index: 200;">
+    <div>
+      <label class="labelCategorie" >Modification</label>
+    </div>
+      <div class="inputDa">
+        <input [(ngModel)]="InputNom" class="form-control"  formControlName="nom" placeholder="Nom" type="text">
+      </div>
+      <div class="inputDa">
+        <select   class="form-control"   (change)="selectEvent($event)">
+          <option value="{{InputCat}}">{{InputCatNom}}</option>
+          <option *ngFor="let item of listCategories" [value]="item.id">{{item.titre}}</option>
+        </select>
+      </div>
+      <div class="inputDa">
+        <input  ngModel="{{detailsPrix}}" class="form-control"  formControlName="prix" placeholder="Prix Unitaire" type="number">
+      </div>
+      <div class="inputDa">
+        <input  ngModel="{{detailsFauxPrix}}" class="form-control"  formControlName="fauxPrix" placeholder="faux Prix" type="number">
+      </div>
+      <div class="inputDa">
+        <select class="form-control" (change)="selectEventArrivage($event)" >
+          <option  value={{textArrivage}}> {{textArrivage}}</option>
+          <option  value="Nouvelle Arrivage"> Nouvelle Arrivage</option>
+          <option  value="En Stock"> En Stock</option>
+          <option  value="Derniere Chance"> Derniere Chance</option>
+          <option value="Selection de la semaine"> Selection de la semaine</option>
+          <option value="Retour En Stock"> Retour En Stock</option>
+          <option  value="En promotion"> En promotion</option>
+        </select>
+      </div>
+    <div class="butonn" style="padding-top: 1rem;">
+      <div class="btn1">
+        <button  (click)="handleModifierProduit()">Ok</button>
+      </div>
+      <div class="btn2">
+      <button (click)="ismodalMod=false">Annuler </button>
+      </div>
+    </div>
+  </div>
+</div>
+  <div  [formGroup]="formCreation"  *ngIf="ismodal" class="modalcreation">
+    <div class="modal_show" style="z-index: 200;">
+      <div>
+        <label class="labelCategorie" >Nouveau Produit</label>
+      </div>
+
+        <div class="inputDa">
+          <input class="form-control"  formControlName="nom" placeholder="Nom" type="text">
+        </div>
+        <div class="inputDa">
+          <select  class="form-control" formControlName="categorie" (change)="selectEvent($event)">
+            <option disabled selected value=""> ----  Selectionner categorie   ----</option>
+            <option *ngFor="let item of listCategories" [value]="item.id">{{item.titre}}</option>
+          </select>
+        </div>
+        <div class="inputDa">
+          <select  class="form-control" formControlName="arrivage" (change)="selectEventArrivage($event)" >
+            <option value="Nouvelle Arrivage"> Nouvelle Arrivage</option>
+            <option  value="En Stock"> En Stock</option>
+            <option  value="Derniere Chance"> Derniere Chance</option>
+            <option value="Selection de la semaine"> Selection de la semaine</option>
+            <option value="Retour En Stock"> Retour En Stock</option>
+            <option  value="En promotion"> En promotion</option>
+          </select>
+        </div>
+        <div class="inputDa">
+          <input class="form-control"  formControlName="prix" placeholder="Prix Unitaire" type="number">
+        </div>
+        <div class="inputDa">
+          <input class="form-control"  formControlName="fauxPrix" placeholder="Faux Prix" type="number">
+        </div>
+        <div class="inputDa">
+          <input class="form-control"  formControlName="stock" placeholder="nombre de produit à ajouter" type="number">
+        </div>
+      <div class="butonn" style="padding-top: 20px;">
+        <div class="btn1">
+          <button  (click)="handleCreateProduct()">Ok</button>
+        </div>
+        <div class="btn2">
+        <button (click)="ismodal=false">Annuler </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="card">
+    <div class="card-header-pills rechercheAdd">
+      <div>
+        <label class="btn" (click)="ismodal=true">+ Nouveau produit</label>
+      </div>
+      <div class="recherche">
+        <input type="text" class="inputText" placeholder="Recherche" >
+        <select name="" id="" >
+          <option value="">Nom</option>
+          <option value="">Categorie</option>
+          <option value="">Arrivage</option>
+          <option value="">Stock</option>
+        </select>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>
+              Marque
+            </th>
+            <th>
+              Rayon
+            </th>
+            <th>
+              Categorie
+            </th>
+            <th>
+              Description
+            </th>
+            <th>
+              Status
+            </th>
+            <th>
+              Stock
+            </th>
+            <th>
+              Prix
+            </th>
+            <th>
+              Faux Prix
+            </th>
+            <th>
+              Arrivage
+            </th>
+            <th>
+              Image
+            </th>
+
+          </tr>
+        </thead>
+        <tbody *ngFor="let items of listProduct">
+          <tr>
+            <td>
+              {{items.nom}}
+            </td>
+            <td>
+              {{items.Categorie.Rayon.rayon}}
+            </td>
+            <td>
+              {{items.Categorie.titre}}
+            </td>
+            <td>
+              <i  (click)="getListDescritpion(items.id) " style="
+              font-size: 20px;
+              color: rgb(10,127,255);
+              cursor: pointer;
+              " class="bi bi-plus-lg "></i>
+            </td>
+            <td>
+              <i (click)="handleModifierStatut(items.id)" title="Non Aprouvé" *ngIf="items.status=='Non Aprouvé'" class="bi bi-toggle2-off"  style="font-size: 25px;color: rgb(116, 106, 106);cursor: pointer;"></i>
+              <i (click)="handleModifierStatut(items.id)" *ngIf="items.status!='Non Aprouvé'" class="bi bi-toggle2-on" title="Aprouvé" style="font-size: 25px;color: rgb(10, 127, 255);font-weight: bold; cursor: pointer;"></i>
+            </td>
+            <td>
+              {{items.stock}}
+            </td>
+            <td>
+              {{items.prix}} Ar
+            </td>
+            <td>
+              {{items.fauxPrix}} Ar
+            </td>
+            <td>
+              {{items.arrivage}}
+            </td>
+            <td>
+              <i  (click)="getListImage(items.id) " style="
+              font-size: 20px;
+              color: rgb(10,127,255);
+              cursor: pointer;
+              " class="bi bi-plus-lg "></i>
+            </td>
+            <td class="action">
+              <button [disabled]="ismodalDetalis || ismodalMod || isModalSupp"  class="details"(click)="detailShow(items.nom,items.Categorie.titre,items.arrivage,items.status,items.prix,items.fauxPrix,items.date)"  ><i class="bi bi-info-circle"></i></button>
+              <button [disabled]="ismodalDetalis || ismodalMod || isModalSupp"  class="mod" (click)="stepUpdateTwo(items.id,items.nom,items.categorie,items.Categorie.id,items.Categorie.titre,items.arrivage,items.prix,items.fauxPrix)" ><i class="bi bi-pen"></i></button>
+              <button [disabled]="ismodalDetalis || ismodalMod || isModalSupp "  class="sup" (click)="ModalSup(items.id,items.nom)" ><i class="bi bi-trash"></i></button>
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>

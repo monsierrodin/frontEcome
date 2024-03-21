@@ -1,0 +1,451 @@
+.containaair-prod{
+  .modalImage{
+    position: fixed;
+    z-index: 200;
+    width: 91%;
+    text-align: center;
+    height: 100vh;
+    margin-top: 5vh;
+    opacity: 0;
+    animation: zoomImage 1.2s ease forwards;
+    animation-delay: .7s;
+    .modal_showDetail{
+      width: 70%;
+      display: flex;
+      height: auto;
+      margin: auto;
+      flex-direction: column;
+      background-color: rgb(255, 255, 255);
+      border:solid 1px rgb(240, 138, 5);
+      @media screen and(max-width:900px){
+        width: 80%;
+      }
+      @media screen and(max-width:600px){
+        width: 90%;
+        height: auto;
+      }
+      .newPhotos{
+        width: 100%;
+        display: flex;
+        gap: 1rem;
+
+
+      }
+      .newDesc{
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        textarea{
+          width: 95%;
+          margin-left: 2.5%;
+          margin-bottom: 15px;
+        }
+        button{
+          width: 95%;
+          margin-left: 2.5%;
+          margin-bottom: 15px;
+        }
+
+
+
+
+
+      }
+      .datails{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        height: 300px;
+        overflow-y: auto;
+        @media screen and(max-width:1100px) {
+          grid-template-columns: repeat(2,1fr);
+        }
+        @media screen and(max-width:700px) {
+          grid-template-columns: repeat(1,1fr);
+        }
+
+          .portFolio_box{
+          margin-top: 10px;
+          margin-left: 10px;
+          margin-inline-end: 10px;
+          position: relative;
+          overflow: hidden;
+          display: flex;
+          min-height: 10rem;
+          border: solid 2px rgb(230, 118, 13);
+          width: 90%;
+           img{
+            width: 100%;
+            height: auto;
+           }
+           .layerSup{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(250, 5, 5, 0.1),rgba(29, 181, 219, 0.904));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 0 3rem;
+            transform: translateY(100%);
+            transition: .5s ease;
+            i{
+              font-size: 25px;
+              color: rgb(192, 24, 24);
+              cursor: pointer;
+            }
+
+           }
+           &:hover .layerSup{
+            transform: translateY(0);
+          }
+          }
+
+      }
+      .datailsDescri{
+        display: grid;
+        width: 95%;
+        margin-left: 2.5%;
+        gap: 1rem;
+        height: 250px;
+        overflow-y: auto;
+        .listDesc{
+          width: 100%;
+          display: flex;
+          .descrip{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            background-color: rgb(171, 170, 189);
+            height: 50px;
+            .ligne{
+              padding-left: 10px;
+              padding-top: 10px;
+              padding-bottom: 10px;
+              padding-right: 10px;
+
+            }
+
+          }
+        }
+
+      }
+
+    }
+    .modal_show{
+      width: 40%;
+      display: flex;
+      height: auto;
+      margin: auto;
+      flex-direction: column;
+      background-color: rgb(210, 194, 194);
+      border:solid 1px rgb(10,127,255);
+      border-radius: 10px;
+      @media screen and(max-width:900px){
+        width: 50%;
+      }
+      @media screen and(max-width:600px){
+        width: 80%;
+        height: auto;
+      }
+      .inputDa{
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 10px;
+        textarea{
+          min-height: 150px;
+          margin-bottom: 20px;
+        }
+      }
+      .labelCategorie{
+        color: black;
+        font-size: calc(13px + 0.50vw);
+        padding: 0px 2px 5px 0px;
+      }
+
+    }
+    .input{
+      width: 95%;
+      margin: auto;
+      label{
+      margin-bottom: 10px;
+      }
+    }
+    .butonn{
+      display: flex;
+      padding-bottom: 10px;
+      margin: auto;
+      width: 100%;
+      justify-content: space-around;
+      .btn1{
+        button{
+          padding-inline: 10px;
+          border-radius: 10px;
+          &:disabled{
+            background-color: rgb(153, 152, 152);
+            color: white;
+          }
+          &:enabled{
+          background-color: white;
+          color: rgb(10,127,255);
+          border: solid 3px rgb(255,255,255);
+          &:hover{
+            background-color: rgb(10,127,255);
+            color: white;
+            border: solid 1px rgb(146, 128, 128);
+          }
+
+          }
+
+        }
+      }
+      .btn2{
+        button{
+          padding-inline: 10px;
+          border-radius: 10px;
+          background-color: white;
+          color: rgb(205, 43, 43);
+          border: solid 3px rgb(255,255,255);
+          &:hover{
+            background-color: rgb(205, 43, 43);
+            color: white;
+            border: solid 1px rgb(146, 128, 128);
+          }
+
+        }
+      }
+    }
+  }
+  .modalcreation{
+    position: fixed;
+    z-index: 200;
+    width: 91%;
+    text-align: center;
+    height: 400px;
+    margin-top: 5vh;
+    opacity: 0;
+    animation: zoomImage 1.2s ease forwards;
+    animation-delay: .7s;
+    .modal_showDetail{
+      width: 40%;
+      display: flex;
+      height: auto;
+      margin: auto;
+      flex-direction: column;
+      background-color: rgb(255, 255, 255);
+      border:solid 1px rgb(204, 215, 226);
+      @media screen and(max-width:900px){
+        width: 50%;
+      }
+      @media screen and(max-width:600px){
+        width: 80%;
+        height: auto;
+      }
+      .datails{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        label{
+          margin-left: 20px;
+          color: gray;
+        }
+      }
+      .labelCategorie{
+        color: black;
+        font-size: calc(13px + 0.50vw);
+        padding: 0px 2px 5px 0px;
+      }
+
+    }
+    .modal_show{
+      width: 40%;
+      display: flex;
+      height: auto;
+      margin: auto;
+      flex-direction: column;
+      background-color: rgb(210, 194, 194);
+      border:solid 1px rgb(10,127,255);
+      border-radius: 10px;
+      @media screen and(max-width:900px){
+        width: 50%;
+      }
+      @media screen and(max-width:600px){
+        width: 80%;
+        height: auto;
+      }
+      .inputDa{
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 10px;
+        textarea{
+          min-height: 150px;
+          margin-bottom: 20px;
+        }
+      }
+      .labelCategorie{
+        color: black;
+        font-size: calc(13px + 0.50vw);
+        padding: 0px 2px 5px 0px;
+      }
+
+    }
+    .input{
+      width: 95%;
+      margin: auto;
+      label{
+      margin-bottom: 10px;
+      }
+    }
+    .butonn{
+      display: flex;
+      padding-bottom: 10px;
+      margin: auto;
+      width: 100%;
+      justify-content: space-around;
+      .btn1{
+        button{
+          padding-inline: 10px;
+          border-radius: 10px;
+          &:disabled{
+            background-color: rgb(153, 152, 152);
+            color: white;
+          }
+          &:enabled{
+          background-color: white;
+          color: rgb(10,127,255);
+          border: solid 3px rgb(255,255,255);
+          &:hover{
+            background-color: rgb(10,127,255);
+            color: white;
+            border: solid 1px rgb(146, 128, 128);
+          }
+
+          }
+
+        }
+      }
+      .btn2{
+        button{
+          padding-inline: 10px;
+          border-radius: 10px;
+          background-color: white;
+          color: rgb(205, 43, 43);
+          border: solid 3px rgb(255,255,255);
+          &:hover{
+            background-color: rgb(205, 43, 43);
+            color: white;
+            border: solid 1px rgb(146, 128, 128);
+          }
+
+        }
+      }
+    }
+  }
+}
+
+.action{
+  display: flex;
+  background-color: transparent;
+  .mod{
+    color: rgb(244, 244, 247);
+    background-color: rgb(10,127,255);
+    margin-left: 5px;
+    border-color: transparent;
+    border-radius: 2px;
+    &:enabled{
+    cursor: pointer;
+      &:hover{
+        color: rgb(255, 255, 255);
+        background-color: rgb(7, 68, 133);
+      }
+    }
+    &:disabled{
+    color: rgb(244, 244, 247);
+    background-color: rgb(102, 103, 104);
+    }
+
+
+  }
+  .sup{
+    color: rgb(248, 241, 240);
+    background-color: rgb(172, 15, 15);
+    margin-left: 5px;
+    border-color: transparent;
+    border-radius: 2px;
+    &:enabled{
+      cursor: pointer;
+      &:hover{
+        color: rgb(255, 255, 255);
+        background-color: rgb(245, 9, 9);
+      }
+    }
+    &:disabled{
+    background-color: rgb(70, 68, 68);
+    }
+  }
+  .details{
+    color: rgb(248, 241, 240);
+    background-color: rgb(96, 124, 96);
+    margin-left: 5px;
+    border-color: transparent;
+    border-radius: 2px;
+    &:enabled{
+      cursor: pointer;
+      &:hover{
+        color: rgb(255, 255, 255);
+        background-color: rgb(10, 179, 114);
+      }
+    }
+    &:disabled{
+    background-color: rgb(70, 68, 68);
+    }
+  }
+
+}
+.rechercheAdd{
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  .recherche{
+    .inputText{
+      border: none;
+      border-bottom: 1px solid #000;
+    }
+    .inputText:focus{
+      outline: none;
+      border-bottom: 1px solid #000;
+    }
+    select{
+      border: none;
+      border-bottom: 1px solid #000;
+      min-width: 100px;
+      margin-right: 2rem;
+    }
+    select:focus{
+      outline: none;
+    }
+    display: flex;
+    gap: 1rem;
+  }
+
+}
+@keyframes zoomImage {
+  0%{
+    opacity: 0;
+    transform: scale(0);
+  }
+  100%{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+

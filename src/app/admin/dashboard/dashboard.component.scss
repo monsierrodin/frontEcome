@@ -1,0 +1,103 @@
+.container_dashboard{
+display: flex;
+.menu_navbar{
+  height: 100vh;
+  background-color: rgb(10,127,255);
+
+  .menuGrand{
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
+
+  .active{
+    background-color: white;
+    border-radius:5px;
+    color: rgb(10,127,255);
+  }
+  a{
+    min-width: 140px;
+    text-decoration: none;
+    color: white;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-bottom: 5px;
+    font-size: calc(14px + .35vw);
+    padding-left: 8px;
+    padding-right:8px ;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover{
+      background-color: white;
+      color: rgb(10, 127, 255);
+    }
+
+  }
+  }
+  .fermerMenu{
+    width: 100%;
+    flex-direction: row-reverse;
+    display: flex;
+    i{
+      font-size: calc(20px + .35vw);
+      color: rgb(244, 246, 248);
+      cursor: pointer;
+    }
+  }
+}
+.menuReduit{
+  background-color: rgb(10,127,255);
+  height: 100vh;
+  .menu1{
+    i{
+      color: white;
+      font-size: calc(20px + .35vw);
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  }
+  .menuIcon{
+    display: flex;
+    flex-direction: column;
+    i{
+      color: white;
+      font-size: calc(20px + .35vw);
+      margin-left: 2px;
+      margin-right: 2px;
+      padding-left: 5px;
+      padding-right: 5px;
+      margin-bottom: 5px;
+      border-radius: 5%;
+      &:hover{
+        background-color: white;
+        color: rgb(10,127,255);
+        transform: scale(1.07);
+        cursor: pointer;
+      }
+    }
+    .active{
+      background-color: white;
+      color: rgb(10,127,255);
+    }
+  }
+}
+.corps{
+  width: 100%;
+  .corps_header{
+    display: flex;
+    width: 100%;
+    background-color: transparent;
+    border-bottom: solid 1px blue;
+    .head{
+      width: 100%;
+      a{width: 100%;
+        display: flex;
+        text-align: center;
+        justify-content: end;
+      }
+    }
+  }
+}
+}
+

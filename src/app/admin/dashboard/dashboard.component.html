@@ -1,0 +1,52 @@
+<div class="container_dashboard">
+  <div *ngIf="menu" class="menu_navbar">
+    <div class="fermerMenu">
+      <i (click)="menu=false" class="bi bi-x"></i>
+    </div>
+    <div class="menuGrand">
+      <a *ngIf="menuItems==11 " class="active"  > <i class="bi bi-speedometer2"></i> Dashboard</a>
+      <a *ngIf="menuItems!=11"  href="/admin" (click)="algorithmeMenu(11)"><i class="bi bi-speedometer2"></i> Dashboard</a>
+      <a *ngIf="menuItems==66"  class="active"><i class="bi bi-radar"></i> Rayon</a>
+      <a *ngIf="menuItems!=66" routerLink="/admin/rayon" (click)="algorithmeMenu(66)"><i class="bi bi-radar"></i> Rayon</a>
+      <a *ngIf="menuItems==33"   class="active"><i class="bi bi-tags"></i> Categorie</a>
+      <a *ngIf="menuItems!=33" routerLink="/admin/categorie" (click)="algorithmeMenu(33)"><i class="bi bi-tags"></i> Categorie</a>
+      <a *ngIf="menuItems==22"  class="active"  ><i class="bi bi-box"></i> Produit</a>
+      <a *ngIf="menuItems!=22" routerLink="/admin/produit" (click)="algorithmeMenu(22)" ><i class="bi bi-box"></i> Produit</a>
+      <a *ngIf="menuItems==44"  href="" class="active"><i class="bi bi-person" ></i> Client</a>
+      <a *ngIf="menuItems!=44" href="" (click)="algorithmeMenu(44)"><i class="bi bi-person" ></i> Client</a>
+      <a *ngIf="menuItems==55"  href="" class="active"><i class="bi bi-bar-chart"></i> Statistiques</a>
+      <a *ngIf="menuItems!=55" href="" (click)="algorithmeMenu(55)"><i class="bi bi-bar-chart"></i> Statistiques</a>
+       </div>
+  </div>
+  <div *ngIf="menu==false" class="menuReduit">
+    <div class="menu1">
+      <i (click)="menu=true" class="bi bi-list" ></i>
+    </div>
+    <div class="menuIcon">
+    <i *ngIf="menuItems==11" class="bi bi-speedometer2 active" ></i>
+    <i *ngIf="menuItems!=11" class="bi bi-speedometer2" routerLink="/admin" (click)="algorithmeMenu(11)"></i>
+    <i *ngIf="menuItems==66" class="bi bi-radar active"></i>
+    <i *ngIf="menuItems!=66" class="bi bi-radar"  routerLink="/admin/rayon" (click)="algorithmeMenu(66)"></i>
+    <i *ngIf="menuItems==33" class="bi bi-tags active"></i>
+    <i *ngIf="menuItems!=33" class="bi bi-tags"  routerLink="/admin/categorie" (click)="algorithmeMenu(33)"></i>
+    <i *ngIf="menuItems==22" class="bi bi-box active"></i>
+    <i *ngIf="menuItems!=22" class="bi bi-box"  routerLink="/admin/produit" (click)="algorithmeMenu(22)"></i>
+    <i *ngIf="menuItems==44" class="bi bi-person active"></i>
+    <i *ngIf="menuItems!=44" class="bi bi-person" routerLink="/admin/categorie" (click)="algorithmeMenu(44)"></i>
+    <i *ngIf="menuItems==55" class="bi bi-bar-chart active"></i>
+    <i *ngIf="menuItems!=55" class="bi bi-bar-chart"  routerLink="/admin/categorie" (click)="algorithmeMenu(55)"></i>
+
+    </div>
+
+  </div>
+  <div class="corps">
+    <div class="corps_header">
+      <div class="head">
+        <a href=""><i class="bi bi-power"> Deconnexion</i></a>
+      </div>
+    </div>
+    <div class="corps_contenu">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

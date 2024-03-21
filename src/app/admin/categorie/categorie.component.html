@@ -1,0 +1,113 @@
+<div class="container_cat">
+
+  <div  [formGroup]="formCreation"  *ngIf="ismodal" class="modalcreation">
+      <div class="modal_show" style="z-index: 200;">
+        <div>
+          <label class="labelCategorie" >Nouveau catégorie</label>
+        </div>
+
+        <div class="input">
+          <input class="form-control"  formControlName="titre" placeholder="Titre" type="text">
+        </div>
+        <div class="input">
+          <select  class="form-control" formControlName="rayon" >
+            <option disabled selected value=""> ----  Selectionner categorie   ----</option>
+            <option *ngFor="let item of listRayon" [value]="item.id">{{item.rayon}}</option>
+          </select>
+        </div>
+        <div class="butonn">
+          <div class="btn1">
+            <button  (click)="creationCategorie()">Ok</button>
+          </div>
+          <div class="btn2">
+          <button (click)="fermerModal()">Annuler </button>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div   *ngIf="modalSup" class="modalcreation">
+    <div  class="modal_show" style="z-index: 200;background-color: rgb(248, 98, 98);">
+      <div>
+        <label class="labelCategorie" >Confirmation </label>
+      </div>
+      <div class="input">
+        <span>Voulez vous vraiment suprimer <h5>{{textModif}}?</h5></span>
+      </div>
+      <div class="butonn">
+        <div class="btn1">
+          <button  (click)="deleteCate()">Ok</button>
+        </div>
+        <div class="btn2">
+        <button (click)="modalSup=false">Annuler </button>
+        </div>
+      </div>
+    </div>
+</div>
+  <div  [formGroup]="formModification"  *ngIf="modalMod" class="modalcreation">
+    <div class="modal_show" style="z-index: 200;">
+      <div>
+        <label class="labelCategorie" >Modification</label>
+      </div>
+      <div class="input">
+        <input [(ngModel)]="inputValue" class="form-control"  formControlName="titre" placeholder="Titre" type="text">
+      </div>
+      <div class="butonn">
+        <div class="btn1">
+          <button [disabled]="inputValue === textModif"  (click)="handleModification(inputValue)">Enregistrer</button>
+        </div>
+        <div class="btn2">
+        <button (click)="modalMod=false">Annuler </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="z-index: 100;">
+    <div class="card-header">
+      <label class="btn"
+      (click)="showModal()">+ Nouveau categorie </label>
+    </div>
+    <div class="card-body">
+      <table class="table" >
+        <thead>
+          <tr>
+            <th>
+             id
+            </th>
+            <th>
+              Type
+            </th>
+            <th>
+              Rayon
+            </th>
+            <th>
+              Status
+            </th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr *ngFor="let item of listCat">
+            <td>
+              {{item.id}}
+            </td>
+            <td>
+              {{item.titre}}
+            </td>
+            <td>
+              {{item.Rayon.rayon}}
+            </td>
+            <td>
+              <i (click)="handleModifierStatut(item.id)" title="Inactif" *ngIf="item.status!='Dispo'" class="bi bi-toggle2-off"  style="font-size: 25px;color: rgb(116, 106, 106);cursor: pointer;"></i>
+              <i (click)="handleModifierStatut(item.id)" *ngIf="item.status=='Dispo'" class="bi bi-toggle2-on" title="Actif" style="font-size: 25px;color: rgb(10, 127, 255);font-weight: bold; cursor: pointer;"></i>
+            </td>
+            <td class="action">
+              <button [disabled]="modalMod || modalSup" class="mod" (click)="handleValidation(item.titre,item.id!)" ><i class="bi bi-pen"></i></button>
+              <button [disabled]="modalMod || modalSup" class="sup" (click)="handleConfirmation(item.titre,item.id)"><i class="bi bi-trash"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
